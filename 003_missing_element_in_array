@@ -1,0 +1,22 @@
+int MissingNumber(vector<int>& array, int n) 
+{
+    int i,sum=0,count;
+
+        for(i=1;i<=n;i++)
+        {
+
+            sum=sum+i;
+
+        }
+
+        for(i=0;i<n-1;i++)
+        {
+
+            count=count+array[i];
+
+        }
+
+        return sum-count;
+
+
+}
