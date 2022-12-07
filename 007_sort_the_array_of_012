@@ -1,0 +1,84 @@
+
+
+ /* APPROACH
+  here we will be using "Dutch National flag algorithm". In this algo, we will be taking 3 pointers low,mid,high. 
+    we will set low=0,mid=0,high=n-1.
+    This algo is based on the fact that all the numbers to the 
+    all the numbers to the  left of low are '0' i.e. [0,....low-1]=0
+    all the numbers to the right side of high are '2' i.e [high+1.....n]=2
+    everything in between [low.....mid-1] are '1'
+    
+    We will be moving the 'mid' pointer unless and until it crosses the 'high' pointer.
+    while moving, we will be having 3 checks-> 
+    1)when the mid pointer is pointing to '0'   
+    2)when the mid pointer is pointing to '1' and 
+    3)when the mid pointer is pointing to '2'
+    
+    Whenever the mid points to '0' ->  We will swap the value at index 'low' with the value at the index 'mid'.
+    Whenever the mid points to '1' -> We will move the 'mid' pointer by '1'
+    Whenever the mid points to '2' ->  We will swap the value at index 'mid' with the value at the index 'high'.
+     
+    
+    TIME COMPLEXITY: O(n)
+    SPACE COMPLEXITY: O(1)
+    This algo works in 1 pass
+   */
+
+
+
+
+
+
+class Solution
+{
+    public:
+    void sort012(int a[], int n)
+    {
+        // code here 
+       int low = 0, high = n-1, mid = 0;
+        
+        while(mid<=high){
+            if(a[mid]==0){
+                swap(a[mid],a[low]);
+                low++;
+                mid++;
+            }
+            else if(a[mid] ==1){
+                mid++;
+            }
+            else{
+                swap(a[mid],a[high]);
+                high--;
+            }
+        }
+    }
+    
+};
+
+//{ Driver Code Starts.
+int main() {
+
+    int t;
+    cin >> t;
+
+    while(t--){
+        int n;
+        cin >>n;
+        int a[n];
+        for(int i=0;i<n;i++){
+            cin >> a[i];
+        }
+
+        Solution ob;
+        ob.sort012(a, n);
+
+        for(int i=0;i<n;i++){
+            cout << a[i]  << " ";
+        }
+
+        cout << endl;
+        
+        
+    }
+    return 0;
+}
